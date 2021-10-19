@@ -1,7 +1,7 @@
 <ul class="list-group">
 
     <li class="list-group-item list-group-item-info"  (click)="agregarMarcador()" >+ agregar</li>
-    <li class="list-group-item" (click)="irMarcador(marker)" *ngFor="let marker of marcadores; let i = index"  [ngStyle]="{'background-color': marker.color}" >marcador {{i + 1 }}</li>
+    <li class="list-group-item" (click)="irMarcador(marker)"  (dblclick)="borrarMarcadores(i)" *ngFor="let marker of marcadores; let i = index"  [ngStyle]="{'background-color': marker.color}" >marcador {{i + 1 }}</li>
 </ul>
 
 

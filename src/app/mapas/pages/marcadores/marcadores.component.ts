@@ -72,6 +72,10 @@ agregarMarcador(){
   });
 
   this.guardarEnLocalStorage();
+
+  marcador.on('dragend' , () =>{
+    this.guardarEnLocalStorage();
+   })
 }
 
 irMarcador( marcador: MarcadorColor){
@@ -113,15 +117,29 @@ leerLocalStorage(){
 
    marcadores.forEach(marc => {
     const newMarket =   new mapboxgl.Marker({draggable  :true , color : marc.color }).setLngLat(marc.centro!).addTo(this.mapa);
+
     this.marcadores.push({
       marker : newMarket,
       color : marc.color
     });
+
+
+    newMarket.on('dragend' , () =>{
+     this.guardarEnLocalStorage();
+    })
+
   });
 
 
 }
 
+
+borrarMarcadores(i : number){
+  this.marcadores[i].marker?.remove();
+  this.marcadores.splice(i , 1);
+  this.guardarEnLocalStorage();
+  
+}
 
 
 
